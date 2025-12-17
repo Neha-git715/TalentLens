@@ -193,6 +193,22 @@ http://localhost:3000
 ✔ Or downgrade sklearn to match saved model
 
 ---
+*ML PIPELINE *
+
+Raw Resume Text
+   ↓
+Text Cleaning (NLTK)
+   ↓
+TF-IDF Vectorization
+   ↓
+SVM Classification
+   ↓
+Category Prediction
+   ↓
+Confidence Score
+   ↓
+Keyword Extraction
+
 
 ## 🚀 Future Enhancements
 
