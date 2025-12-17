@@ -1,121 +1,186 @@
-# TalentLens – AI-Powered Resume Analyzer
+# TalentLens – ML-Powered Resume Analyzer
 
-TalentLens is a  **Resume Screening & Analysis system** built using **FastAPI (backend)** and **Next.js (frontend)**. It uses **Machine Learning (TF-IDF + SVM)** to classify resumes, provide confidence scores, extract top keywords, and supports **PDF resume uploads**.
+TalentLens is an **end-to-end Machine Learning project** that analyzes resume text and predicts the most relevant job category using **Natural Language Processing (NLP)** and **supervised learning**. The trained ML model is served via a **FastAPI backend** and consumed by a **Next.js frontend**.
 
-This project is suitable for:
-
-* Resume screening systems
-* ATS-style applications
----
-
-## ✨ Features
-
-* 📄 Resume classification (Data Science, HR, Dev, etc.)
-* 📊 Confidence score for predictions
-* 🔑 Top keywords influencing the prediction
-* 📎 PDF resume upload support
-* 🧠 ML pipeline using TF‑IDF + Linear SVM
-* 🌐 Full‑stack architecture (FastAPI + Next.js)
+This project demonstrates the **complete ML lifecycle** — data preprocessing, feature engineering, model training, evaluation, inference, and full-stack deployment.
 
 ---
 
-## 🧱 Tech Stack
+## 🚀 Key Features
+
+* Resume text preprocessing using NLP (NLTK)
+* TF-IDF based feature extraction
+* Supervised ML classification of resumes into job roles
+* Model evaluation with accuracy & classification report
+* FastAPI backend exposing prediction API
+* Next.js frontend for user interaction
+* Modular, production-ready project structure
+
+---
+
+## 🧠 Why This Is an ML Project
+
+TalentLens is **not just a UI or rule-based system**. It includes:
+
+✔ Dataset-driven learning
+✔ NLP text cleaning & normalization
+✔ Vectorization (TF-IDF)
+✔ Supervised classification model
+✔ Model training & evaluation
+✔ Saved ML artifacts (`.pkl` files)
+✔ Real-time inference via API
+
+---
+
+## 🛠 Tech Stack
+
+### Machine Learning & NLP
+
+* Python
+* Scikit-learn
+* Pandas, NumPy
+* NLTK (tokenization, lemmatization, stopwords)
+* TF-IDF Vectorizer
 
 ### Backend
 
-* Python 3.10+
 * FastAPI
-* Scikit‑learn
-* NLTK
-* Joblib
-* PyMuPDF (PDF parsing)
+* Joblib (model persistence)
+* Uvicorn
 
 ### Frontend
 
-* Next.js (App Router)
-* TypeScript
-* Tailwind CSS (optional styling)
+* Next.js (TypeScript)
+* React
+* Tailwind CSS
 
 ---
 
-## 📁 Folder Structure
+## 📂 Project Structure
 
 ```
 TalentLens/
 │
 ├── backend/
-│   ├── main.py                 # FastAPI app
+│   ├── src/
+│   │   ├── preprocessing.py   # NLP cleaning logic
+│   │   ├── train.py            # Model training pipeline
+│   │   ├── predict.py          # Inference logic
+│   │   └── __init__.py
+│   │
+│   ├── data/
+│   │   └── resume_dataset.csv  # Training dataset
+│   │
 │   ├── model.pkl               # Trained ML model
-│   ├── vectorizer.pkl          # TF‑IDF vectorizer
-│   ├── label_encoder.pkl       # Label encoder
-│   └── src/
-│       └── preprocessing.py    # Text cleaning logic
+│   ├── vectorizer.pkl          # TF-IDF vectorizer
+│   ├── label_encoder.pkl       # Encoded labels
+│   ├── app.py                  # FastAPI server
+│   ├── requirements.txt
+│   └── README.md
 │
-└── frontend/
-    ├── app/
-    │   └── page.tsx
-    ├── components/
-    │   └── ResumeForm.tsx
-    └── package.json
+├── frontend/
+│   ├── components/
+│   ├── app/
+│   ├── package.json
+│   └── ...
+│
+└── README.md
 ```
 
 ---
 
-## ⚙️ Backend Setup & Run
+## ⚙️ How to Run the Project (From Scratch)
 
-### 1️⃣ Create Virtual Environment
-
-```powershell
-cd backend
-python -m venv .venv
-.venv\Scripts\activate
-```
-
-### 2️⃣ Install Dependencies
-
-```powershell
-pip install fastapi uvicorn scikit-learn nltk joblib pymupdf
-```
-
-### 3️⃣ Download NLTK Resources
-
-```python
-import nltk
-nltk.download('punkt')
-nltk.download('stopwords')
-nltk.download('wordnet')
-```
-
-### 4️⃣ Run Backend Server
-
-```powershell
-uvicorn main:app --reload
-```
-
-Backend will be live at:
-
-```
-http://localhost:8000
-```
-
----
-
-## 🌐 Frontend Setup & Run
-
-### 1️⃣ Install Dependencies
+### 1️⃣ Clone the Repository
 
 ```bash
-cd frontend
+git clone https://github.com/<your-username>/TalentLens.git
+cd TalentLens/backend
+```
+
+---
+
+### 2️⃣ Create Virtual Environment (Recommended)
+
+**Windows**
+
+```powershell
+python -m venv venv
+venv\Scripts\activate
+```
+
+**Mac / Linux**
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+---
+
+### 3️⃣ Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### 4️⃣ Train the ML Model (One-Time)
+
+⚠️ Must be run from `backend/`
+
+```bash
+python -m src.train
+```
+
+This step:
+
+* Cleans resume text
+* Converts text to TF-IDF vectors
+* Trains a supervised classifier
+* Evaluates performance
+* Saves trained artifacts (`.pkl` files)
+
+---
+
+### 5️⃣ Test Resume Prediction (CLI)
+
+```bash
+python -m src.predict
+```
+
+Expected output:
+
+```
+Predicted Category: Python Developer
+```
+
+---
+
+### 6️⃣ Run Backend API (FastAPI)
+
+```bash
+python app.py
+```
+
+Open API documentation:
+
+```
+http://127.0.0.1:8000/docs
+```
+
+---
+
+### 7️⃣ Run Frontend (Next.js)
+
+```bash
+cd ../frontend
 npm install
-```
-
-### 2️⃣ Run Development Server
-
-```bash
 npm run dev
 ```
 
-Frontend will be live at:
+Frontend runs at:
 
 ```
 http://localhost:3000
@@ -123,129 +188,74 @@ http://localhost:3000
 
 ---
 
-## 🔌 API Endpoints
+## 📊 Model Details
 
-### 🔹 Predict Using Text
+* **Input**: Raw resume text
+* **Preprocessing**: Tokenization, stopword removal, lemmatization
+* **Feature Engineering**: TF-IDF
+* **Model Type**: Supervised multi-class classifier
+* **Evaluation Metric**: Accuracy, Precision, Recall, F1-score
 
-**POST** `/predict`
+Sample accuracy achieved:
 
-```json
-{
-  "text": "Your resume content here"
-}
 ```
-
-**Response:**
-
-```json
-{
-  "category": "Data Science",
-  "confidence": 87.23,
-  "keywords": ["python", "machine", "learning"]
-}
+Accuracy: ~82%
 ```
 
 ---
 
-### 🔹 Predict Using PDF
+## 🔌 API Endpoint
 
-**POST** `/predict-pdf`
+### POST `/predict`
 
-* Form‑Data
-* Key: `file`
-* Value: Resume PDF
+**Request Body**
 
----
+```json
+{
+  "text": "Python developer with experience in Django and ML"
+}
+```
 
-## 🧠 ML Model Details
+**Response**
 
-* Text Preprocessing:
-
-  * Lowercasing
-  * Stopword removal
-  * Lemmatization
-* Vectorization:
-
-  * TF‑IDF
-* Classifier:
-
-  * Linear Support Vector Machine (LinearSVC)
-* Confidence:
-
-  * Derived from decision function margins
-* Keywords:
-
-  * Top TF‑IDF weighted terms
+```json
+{
+  "prediction": "Python Developer"
+}
+```
 
 ---
 
-## 🧪 Common Issues & Fixes
+## 📌 Important Notes
 
-### ❌ "Failed to fetch" in frontend
-
-✔ Ensure backend is running on port `8000`
-✔ Ensure CORS is enabled in FastAPI
-✔ Use `http://localhost:8000` (not 127.0.0.1 sometimes)
-
-### ❌ sklearn version warning
-
-✔ Re‑train model using same sklearn version
-✔ Or downgrade sklearn to match saved model
-
----
-*ML PIPELINE *
-
-Raw Resume Text
-   ↓
-Text Cleaning (NLTK)
-   ↓
-TF-IDF Vectorization
-   ↓
-SVM Classification
-   ↓
-Category Prediction
-   ↓
-Confidence Score
-   ↓
-Keyword Extraction
-
-*4️⃣ Model comparison = ML thinking*
-
-Logistic Regression
-
-Naive Bayes
-
-SVM
-
-Then:
-
-Compared accuracy
-
-Selected SVM based on performance
-
-That is model evaluation & selection — pure ML.
-## 🚀 Future Enhancements
-
-* ATS score vs Job Description
-* Resume strengths & weaknesses (GenAI)
-* JD‑Resume similarity scoring
-* Authentication (Admin / Recruiter)
-* Cloud deployment (Vercel + Render)
+* Always run ML scripts using `python -m src.<file>`
+* Dataset must exist in `backend/data/`
+* NLTK resources auto-download on first run
+* This project uses **classical ML**, not deep learning
 
 ---
 
-## 📌 Resume / Interview Description
+## 🎯 Interview Explanation (Short)
 
-> Built an AI‑powered resume analyzer using FastAPI and Next.js with ML‑based classification, confidence scoring, keyword extraction, and PDF resume parsing.
+> “TalentLens is an end-to-end ML resume classification system. I preprocess resume text using NLP, extract TF-IDF features, and train a supervised classifier. The trained model is exposed via a FastAPI backend and integrated with a Next.js frontend for real-time predictions.”
+
+---
+
+## 🔮 Future Improvements
+
+* Handle class imbalance (SMOTE / class weights)
+* Add confidence scores
+* Resume keyword highlighting
+* PDF resume upload
+* Model comparison (SVM vs Logistic Regression)
+* Deployment using Docker & cloud
 
 ---
 
 ## 👩‍💻 Author
 
 **Neha Gade**
-Final Year Computer Engineering Student
-Project: TalentLens – Resume Analyzer
 
 ---
 
-⭐ If you like this project, consider starring the repository!
+⭐ If you like this project, don’t forget to star the repository!
