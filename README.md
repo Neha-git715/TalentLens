@@ -195,6 +195,16 @@ http://localhost:3000
 * **Feature Engineering**: TF-IDF
 * **Model Type**: Supervised multi-class classifier
 * **Evaluation Metric**: Accuracy, Precision, Recall, F1-score
+* ### Models Used
+TalentLens uses supervised machine learning for resume classification.
+
+Trained models:
+- Logistic Regression
+- Linear Support Vector Machine (LinearSVC)
+
+Both models are trained on TF-IDF features.  
+The model with the highest validation accuracy is automatically selected and saved for inference.
+
 
 Sample accuracy achieved:
 
