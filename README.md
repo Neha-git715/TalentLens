@@ -209,7 +209,21 @@ Confidence Score
    ↓
 Keyword Extraction
 
+*4️⃣ Model comparison = ML thinking*
 
+Logistic Regression
+
+Naive Bayes
+
+SVM
+
+Then:
+
+Compared accuracy
+
+Selected SVM based on performance
+
+That is model evaluation & selection — pure ML.
 ## 🚀 Future Enhancements
 
 * ATS score vs Job Description
